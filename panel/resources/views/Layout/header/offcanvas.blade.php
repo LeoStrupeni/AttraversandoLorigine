@@ -73,6 +73,10 @@
               @endif
               <li>
                 <a class="link-body-emphasis d-inline-flex text-decoration-none rounded ms-4" 
+                  href="{{ route('budget_type.index') }}">Modelos de Presupuestos</a>
+              </li>
+              <li>
+                <a class="link-body-emphasis d-inline-flex text-decoration-none rounded ms-4" 
                   href="{{ route('balances.index') }}">Saldos Iniciales</a>
               </li>
             </ul>

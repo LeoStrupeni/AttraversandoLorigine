@@ -20,36 +20,11 @@
     <div class="container-fluid">
         <div class="row justify-content-center my-4">
             <div class="col-12 col-lg-11 bg-white rounded p-2">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-6">
-                        <div class="navbar-brand ps-3 fs-5">Nuevo Presupuesto</div>
+                <div class="row align-items-center  justify-content-between">
+                    <div class="col">
+                        <div class="navbar-brand ps-3 fs-5">Editar modelo de Presupuesto</div>
                     </div>
-                    <div class="col-5">
-                        <button type="button" class="btn btn-type1 float-end ms-1" onclick="window.location.href='{{route('budget.index')}}'">
-                            Volver
-                        </button>
-                        <button type="button" class="btn btn-type1 float-end fastcharge mx-1 d-none d-md-block">Carga rápida</button>
-                    </div>
-                    <div class="col-12 col-md-6 offset-md-3 mt-3 mb-2">
-                        <div class="row g-2 align-items-center border rounded p-1 px-2" style="background-color: rgb(232 228 217 / 90%) !important;">
-                            <div class="col-7 m-0">
-                                <label for="model_budget" class="col-form-label">Precargar Modelo de Presupuesto</label>
-                            </div>
-                            <div class="col-5 m-0">
-                                <div class="input-group">
-                                    <select class="form-select form-select-sm" id="model_budget">
-                                        <option value=""></option>
-                                        @foreach($modelsBudget as $model)
-                                            <option value="{{ $model->id }}">{{ $model->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn btn-type1 btn-sm float-end" id="model_budget_btn">
-                                        <i class="fa-solid fa-caret-down"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
+                    <div class="col">
                     </div>
                 </div>
                 
@@ -57,62 +32,45 @@
 
                 @include('Layout.errors')
 
-                <form action="/budget" method="POST" id="formnewbudget">
+                <form action="/budget_type/{{ $budget_type->id }}" method="POST" id="formeditbudget_type">
                     @csrf
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-12 col-lg-6">
+                    {{ method_field('PUT') }}
+                    <div class="row">
+                        <div class="col-12">
                             <div class="mb-2">
-                                <label for="client_id" class="form-label mb-0 ps-3 fw-bold">
-                                    Cliente
-                                    <span class="d-none spinner-data">
-                                        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
-                                    </span>
-                                </label>
-                                <select class="form-select form-select-sm validate" name="client_id" id="client_id_c" style="width: 100%" required>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-4">
-                            <div class="mb-2">
-                                <label for="fecha" class="form-label mb-0 ps-3 fw-bold text-center">Fecha</label>
-                                <input type="text" class="form-control form-control-sm text-center validate" name="fecha" id="fechaC" required>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-2">
-                            <div class="mb-2">
-                                <label for="valid" class="form-label mb-0 ps-3 fw-bold text-center">Validez</label>
-                                <input type="number" class="form-control form-control-sm text-center validate" name="valid" value="15" required>
+                                <label for="name" class="form-label mb-0 ps-3 fw-bold">Nombre</label>
+                                <input type="text" class="form-control form-control-sm validate" name="name" id="nameC" value="{{ $budget_type->name }}" required>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-2">
                                 <label for="observations" class="form-label mb-0 ps-3 fw-bold">Observaciones</label>
-                                <textarea class="form-control form-control-sm" name="observations" rows="2"></textarea>
+                                <textarea class="form-control form-control-sm" name="observations" rows="2">{!!$budget_type->observations!!}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-2">
                                 <label for="payment_methods" class="form-label mb-0 ps-3 fw-bold">Formas de pago</label>
-                                <textarea class="form-control form-control-sm" name="payment_methods" rows="1"></textarea>
+                                <textarea class="form-control form-control-sm" name="payment_methods" rows="1">{!!$budget_type->payment_methods!!}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-2">
                                 <label for="includes" class="form-label mb-0 ps-3 fw-bold">Incluye</label>
-                                <textarea class="form-control form-control-sm" name="includes" rows="2"></textarea>
+                                <textarea class="form-control form-control-sm" name="includes" rows="2">{!!$budget_type->includes!!}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="mb-2">
                                 <label for="not_includes" class="form-label mb-0 ps-3 fw-bold">No incluye</label>
-                                <textarea class="form-control form-control-sm" name="not_includes" rows="3"></textarea>
+                                <textarea class="form-control form-control-sm" name="not_includes" rows="3">{!!$budget_type->not_includes!!}</textarea>
                             </div>
                         </div>
                         
                         <div class="col-12" >
                             <div class="mb-2">
                                 <label for="clarifications" class="form-label mb-0 ps-3 fw-bold">Aclaraciones</label>
-                                <textarea class="form-control form-control-sm" name="clarifications" rows="5"></textarea>
+                                <textarea class="form-control form-control-sm" name="clarifications" rows="5">{!!$budget_type->clarifications!!}</textarea>
                             </div>
                         </div>
                         
@@ -269,7 +227,7 @@
                                 <div class="col-8 col-md-4 order-4 order-md-2 ">
                                     <div class="input-group">
                                         <span class="input-group-text" style="width: 56px!important;justify-content: center">JUS</span>
-                                        <input type="text" name="cotizacion_j" id="cotizacion_j" class="form-control form-control-sm text-end" value="{{number_format($jus, 2, ',', '.')}}" onchange="subtotales();">
+                                        <input type="text" name="cotizacion_j" id="cotizacion_j" class="form-control form-control-sm text-end" value="{{number_format('103337.61', 2, ',', '.')}}" onchange="subtotales();">
                                     </div>
                                 </div>
 
@@ -306,7 +264,7 @@
                             
                             <div class="row col-12 col-md-4 offset-md-8 mb-2">
                                 <div class="col-8 offset-4">
-                                    <button style="margin-top: 1rem; margin-bottom: 1rem;" class="btn btn-type1 w-100" id="btn-save-budget" type="button">
+                                    <button style="margin-top: 1rem; margin-bottom: 1rem;" class="btn btn-type1 w-100" id="btn-update-budget_type" type="button">
                                         Guardar
                                     </button>
                                 </div>
@@ -323,13 +281,14 @@
 
 @section('script_by_page')
     <script src="{{env('APP_URL')}}/assets/plugins/ckeditor_4.22.1_standard/ckeditor/ckeditor.js"></script>
-    <script src="{{env('APP_URL')}}/assets/js/local/budget.js"></script>
+    <script src="{{env('APP_URL')}}/assets/js/local/budget_type.js"></script>
     <script>
         var servicios_agregados = {}
         var posicion = 0;
-        
+        var items = @json($budget_type_items);
+        var budget_type = @json($budget_type);
         $(document).ready(function() {
-            form = document.getElementById("formnewbudget");
+            form = document.getElementById("formeditbudget_type");
             $( form.elements ).each(function( index ) {
                 if(this.nodeName === "TEXTAREA") {
                     CKEDITOR.replace(this,{
@@ -346,6 +305,25 @@
                 language: 'es',
                 dropdownCssClass: "no_ejecutar"
             } );
+
+            getdataselect(`/client/table`,'#client_id_c', budget_type.client_name);
+            $('#client_id_c').val($('#client_id_c option:eq(0)').val()).trigger('change');
+
+            $.each(items, function() {
+                var temp = new Object();
+                temp["id"] = this.service_id;
+                temp["name"] = this.service_name;
+                temp["descripcion"] = this.description;
+                temp["currency"] = this.type_money;
+                temp["price"] = this.price;
+                temp["posicion"] = posicion;
+                temp["id_base"] = this.id;
+                servicios_agregados[posicion] = temp;
+                posicion = posicion+1;
+            })
+
+            $('#servicios_agregados').val(JSON.stringify(servicios_agregados));
+            addItemsTable();
             
         });
 

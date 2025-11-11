@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\BudgetTypeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Controller;
@@ -75,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/budget/client/{id}', [BudgetController::class,'getDataCliente']);
     Route::get('/budget/pdf/{id}', [BudgetController::class,'getPdf'])->name('budget.pdf');
     Route::get('/budget/pdf2/{id}', [BudgetController::class,'getPdf2'])->name('budget.pdf2');
+
+    Route::resource('/budget_type',BudgetTypeController::class);
+    Route::post('/budget_type/table', [BudgetTypeController::class,'getDataTable']);
 
     Route::resource('/service',ServicesController::class);
     Route::post('/service/table', [ServicesController::class,'getDataTable']);

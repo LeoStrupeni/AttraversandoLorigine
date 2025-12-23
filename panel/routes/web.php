@@ -21,10 +21,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('test', function () {
-// 	dd( base_path(). '/../public/storage/',env('APP_URL'),storage_path('app'));
+// 	dd( base_path(). '/../public_html/storage/',env('APP_URL'),storage_path('app'));
 // });
 Route::get('test', function () {
-    dd(base_path('../public/fonts/'), env('APP_URL'), storage_path('app'));
+    dd(base_path('../public_html/fonts/'), env('APP_URL'), storage_path('app'));
 });
 
 Route::view('/public','home')->name('home');

@@ -341,12 +341,12 @@ class BudgetController extends Controller
 
     public function getPdf($id)
     {
-        $path = base_path('../public/assets/media/originales/Original_lignos_seguro.png');
+        $path = base_path('../public_html/assets/media/originales/Original_lignos_seguro.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $logobase64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $path = base_path('../public/assets/media/originales/Original_lignos_seguro_pie.png');
+        $path = base_path('../public_html/assets/media/originales/Original_lignos_seguro_pie.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $logopie64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -363,12 +363,12 @@ class BudgetController extends Controller
 
     public function getPdf2($id)
     {
-        $path = base_path('../public/assets/media/originales/Original_lignos_seguro.png');
+        $path = base_path('../public_html/assets/media/originales/Original_lignos_seguro.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $logobase64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $path = base_path('../public/assets/media/originales/Original_lignos_seguro_pie.png');
+        $path = base_path('../public_html/assets/media/originales/Original_lignos_seguro_pie.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $logopie64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
